@@ -7,15 +7,6 @@ import MovieCard from './MovieCard';
 
 const API_URL= 'http://www.omdbapi.com?apikey=5f40d412'
 
-const movie1={
-"Title": "Italian Spiderman",
-"Type" : "movie",
-"Year" : "2007",
-"imdbID" : "tt2705436",
-"Poster": "N/A"
-}
-
-
 const App = () =>{
   const [movies,setMovies]= useState([]);
   const [searchTerm,setSearchTerm]= useState([])
