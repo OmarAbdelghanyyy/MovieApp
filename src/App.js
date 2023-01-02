@@ -7,7 +7,10 @@ import MovieCard from './MovieCard';
 
 const API_URL= 'http://www.omdbapi.com?apikey=5f40d412'
 
+var hide=false;
+    
 const App = () =>{
+  
   const [movies,setMovies]= useState([]);
   const [searchTerm,setSearchTerm]= useState([])
   const searchMovie= async(title) =>{
@@ -16,7 +19,7 @@ const App = () =>{
    setMovies(data.Search);
   }
   useEffect(() => {
-    searchMovie('Spiderman');
+    searchMovie();
   },[]);
   return(
     <div className='app'>
@@ -27,21 +30,30 @@ const App = () =>{
         placeholder='Search for movies'
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        
+
       
         />
         <img 
         src={SearchIcon}
         alt='search'
-        onClick={() =>searchMovie(searchTerm)}
+        onClick={() =>{
+          searchMovie(searchTerm);
+          hide=true;
+        }
+      }
         />
       </div>
       {movies?.length>0 
          ?(
       
       <div className='container'>
-       {movies.map((movie)=>(
+      
+
+      { hide && movies.map((movie)=>(
         <MovieCard movie={movie} />
-       ))}
+       ))
+       }
 
       </div>
       ) :(
